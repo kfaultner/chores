@@ -1,0 +1,163 @@
+* {
+
+    margin: 0;
+    padding: 0;
+/*    min-height: 40px;
+    min-width: 60px;*/
+}
+
+.page {
+    background-color: blue;
+    height: 1536px;
+    padding: 5px;
+    width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.title {
+    background-color: cyan;
+    text-align: center;
+    margin: 15px;
+    padding: 10px 0px;
+}
+
+.myFamily {
+    padding: 5px;
+    display: inline-block;
+    margin: 0 auto;
+    width: 400px;
+
+}
+.parent1, .parent2 {
+    background-color: yellow;
+    border: DeepSkyBlue solid 1px;
+    text-align: center;
+    margin: 10px;
+    padding: 5px;
+}
+
+.child1, .child2 {
+    background-color: red;
+    border: lime solid 1px;
+    text-align: center;
+    margin: 10px;
+    padding: 5px;
+}
+
+img {
+    background-color: black;
+    float: left;
+    min-height: 40px;
+    min-width: 60px;
+    margin-left: 20px;
+}
+
+.chores {
+    background-color: green;
+    display: inline-block;
+    width: 250px;
+    margin-left: 70px;
+    text-align: center;
+}
+
+.chores li {
+    list-style-type: none;
+    padding-top: 10px;
+}
+
+/*personView.php*/
+
+.choreList li {
+    background-color: LightSteelBlue;
+    list-style-type: none;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.summary {
+    float: right;
+    font-size: 16pt;
+    margin-right: 10px;
+}
+
+.personViewChores {
+    background-color: green;
+    width: 430px;
+    height: 575px;
+    margin-left: 40px;
+    text-align: center;
+    padding: 5px;
+    overflow: scroll;
+}
+
+.day {
+    background-color: #ccc;
+    width: 400px;
+    margin: 10px;
+    padding: 5px;
+}
+
+.day table{
+    width: 100%;
+    text-align: center;
+}
+
+.myChores {
+    background-color: Tomato;
+    display: inline;
+    float: right;
+    padding: 5px;
+    position: absolute;
+    top: 150px;
+    right: 15px;
+    text-align: center;
+}
+
+.myChores li {
+    list-style-type: none;
+}
+
+.total {
+    font-weight: bold;
+    background-color: MediumSpringGreen;
+    width: 300px;
+    margin: 10px auto;
+}
+
+.total table {
+    float: right;
+}
+
+.assign {
+    /*margin-right: 100px;*/
+    margin-top: 10px;
+    position: absolute;
+    top: 85px;
+    right: 100px;
+}
+
+.assign button{
+    border-radius: 5px;
+    height: 30px;
+    width: 100px;
+    float: right;
+    right: 500px;
+    top: 10px;
+}
+
+/* Assign page */
+
+.assignChores {
+    margin: 10px auto;
+    background-color: Khaki;
+    text-align: center;
+    width: 500px;
+}
+
+.assignChores table {
+    margin: 10px auto;
+    padding: 5px;
+}
+
+
