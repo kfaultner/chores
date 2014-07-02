@@ -1,35 +1,18 @@
-<?php
-
-// Init
-include($_SERVER['DOCUMENT_ROOT'] . '/chores/app/core/initialize.php');
-
-// Controller
-class Controller extends AppController {
-    public function __construct() {
-        parent::__construct();
-
-        // Create welcome variable in view
-        $this->view->welcome = '<img src="" alt="">
-                <div class="summary">Total points earned = 350<br>Total money earned = $25.00</div>';
-
-        //Antime we pass variables into ANY VIEW start with $this->view->createVariable
-    }
-
-}
-$controller = new Controller();
-
-// Extract Main Controler Vars
-extract($controller->view->vars);
-
-?>
-
-<!-- this is the content that you change for each page. Save as new page, add new content -->
- <header class="title">
+<!-- <header class="title">
             <h1>Emily
-                <?php echo $welcome ?>;
+                <?php ; ?> echo $welcome inside php tag
             </h1>
         </header>
         <div class="personViewChores">
+            <script id="searchResults" type="text/x-handlebars-template">
+
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{day_due}}</td>
+                    <td>{{point_value}}</td>
+                    <td>{{monetary_value}}</td>
+                </tr>
+            </script>
             <div class="day">MONDAY
                 <table>
                     <thead>    
@@ -42,25 +25,17 @@ extract($controller->view->vars);
                         </tr>
                     </thead>
                     <tbody>
-                        <td>Pick up toys/books</td>
-                        <td>Every Day</td>
-                        <td>10</td>
-                        <td></td>
-                        <td><input class="done" type="checkbox"></td>
-                    </tbody>
-                    <tbody>
-                        <td>Make bed</td>
-                        <td>Every Day</td>
-                        <td>5</td>
-                        <td></td>
+                        <td>{{name}}</td>
+                        <td>{{day_due}}</td>
+                        <td>{{point_value}}</td>
+                        <td>{{monetary_value}}</td> 
                         <td><input class="done" type="checkbox"></td>
                     </tbody>
                 </table>
             </div>
             <div class="day">TUESDAY
                 <table>
-                    <thead>
-                    <tbody>    
+                    <thead>  
                         <tr>
                             <th>Chore</th>
                             <th>Due by</th>
@@ -68,27 +43,12 @@ extract($controller->view->vars);
                             <th>Money</th>
                             <th>Done</th>
                         </tr>
-                    </tbody>
-                    <tbody>
-                        <td>Make bed</td>
-                        <td>Every Day</td>
-                        <td>5</td>
-                        <td></td>
-                        <td><input class="done" type="checkbox"></td>
-                    </tbody>
                     </thead>
                     <tbody>
-                        <td>Pick up toys/books</td>
-                        <td>Every Day</td>
-                        <td>10</td>
-                        <td></td>
-                        <td><input class="done" type="checkbox"></td>
-                    </tbody>
-                    <tbody>
-                        <td>Make bed</td>
-                        <td>Every Day</td>
-                        <td>5</td>
-                        <td></td>
+                        <td>{{name}}</td>
+                        <td>{{day_due}}</td>
+                        <td>{{point_value}}</td>
+                        <td>{{monetary_value}}</td> 
                         <td><input class="done" type="checkbox"></td>
                     </tbody>
                 </table>
@@ -292,4 +252,4 @@ extract($controller->view->vars);
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div> -->

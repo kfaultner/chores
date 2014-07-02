@@ -22,8 +22,10 @@ class User extends Model {
 
 		// Prepare SQL Values
 		$sql_values = [
-			'username' => $input['username'],
+			'user_id' => $input['user_id'],
 			'first_name' => $input['first_name'],
+			'last_name' => $input['last_name'],
+			'email' => $input['email'],
 			'password' => $input['password']
 		];
 
@@ -58,7 +60,8 @@ class User extends Model {
 		// Prepare SQL Values
 		$sql_values = [
 			'first_name' => $input['first_name'],
-			'username' => $input['username'],
+			'last_name' => $input['last_name'],
+			'email' => $input['email'],
 			'password' => $input['password']
 		];
 
@@ -70,7 +73,6 @@ class User extends Model {
 		
 		// Return a new instance of this user as an object
 		return new User($this->user_id);
-		echo ($this->user_id);
 
 	}
 

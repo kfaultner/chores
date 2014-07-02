@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui" />
-	<title>Page Title</title>
+	<title>Chores</title>
 	
 	<!-- Main CSS -->
 	<link rel="stylesheet" href="/chores/css/styles.css">
@@ -19,7 +19,7 @@
 <body>
 
 	<div class="page">
-			<?php echo $primary_header; ?>
+
 
 		<main>
 			<!-- you can enter php tag here with echo $main_content; -->
