@@ -4,28 +4,31 @@
 include($_SERVER['DOCUMENT_ROOT'] . '/chores/app/core/initialize.php');
 
 // Controller
-class Controller extends AppController {
+class ManageController extends AppController {
     public function __construct() {
         parent::__construct();
 
-        function getAllChores(){
-            $sql = "SELECT * FROM chore
-                    ORDER BY FIELD(day_due, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')";
+        function getManageChores(){
+            $sql = "SELECT c.name, c.day_due, c.point_value, c.monetary_value, cu.id as cu_id
+                    FROM chore as c, chore_user as cu
+                    WHERE family_id = 1
+                    AND c.id = cu.chore_id 
+                    ORDER BY FIELD(c.day_due, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')";
 
             $results = db::execute($sql);
 
-            $allChores = [];
+            $manageChores = [];
 
             while($row = $results->fetch_assoc()){
-                array_push($allChores,$row);
+                array_push($manageChores,$row);
             }
 
-            return ($allChores);
+            return ($manageChores);
         }
             
-        $allChores = "";
+        $manageChores = "";
         $html = "";
-        $famChores = getAllChores();
+        $famChores = getManageChores();
 
         foreach($famChores as $chore_f){
 
@@ -35,33 +38,34 @@ class Controller extends AppController {
                     <td>{$chore_f['point_value']}</td>
                     <td>{$chore_f['monetary_value']}</td>
                     <td>
-                        <select name='family' id=''>
-                            <option value=''>Dustin</option>
-                            <option value=''>Kris</option>
-                            <option value=''>Emily</option>
-                            <option value=''>Abby</option>
+                        <select name='family' class='famName'>
+                            <option value='1'>Dustin</option>
+                            <option value='2'>Kris</option>
+                            <option value='3'>Emily</option>
+                            <option value='4'>Abby</option>
                         </select>
+                        <button class='assign'$add>Add</button>
+                        <input type='hidden' name='cu_user_id' value='{$chore_f['cu_id']}'>
                     </td>
-                    <td><button class='asign' type='button' $add>Add</button></td>
                     </tr>";
         }
           
-            $allChores .= $html;
+            $manageChores .= $html;
 
 
         // Create welcome variable in view
         $this->view->welcome = 'FAULTNER FAMILY CHORES';
 
-        $this->view->allChores = $allChores;
+        $this->view->manageChores = $manageChores;
 
         //Antime we pass variables into ANY VIEW start with $this->view->createVariable
     }
 
 }
-$controller = new Controller();
+$mcontroller = new manageController();
 
 // Extract Main Controler Vars
-extract($controller->view->vars);
+extract($mcontroller->view->vars);
 
 ?>
 
@@ -85,7 +89,7 @@ extract($controller->view->vars);
                 </thead>
                 <tbody>
                     <tr>
-                        <?php echo $allChores; ?>
+                        <?php echo $manageChores; ?>
                     </tr>
                 </tbody>
             </table>

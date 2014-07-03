@@ -121,7 +121,7 @@ class PersonController extends AppController {
                     <td>{$chore_e['day_due']}</td>
                     <td>{$chore_e['point_value']}</td>
                     <td>{$chore_e['monetary_value']}</td>
-                    <td><button class='add' type='button' $add>Add</button>
+                    <td><button class='add' $add>Add</button>
                     <input type='hidden' name='cu_user_id' value='{$chore_e['cu_id']}'></td>
                     </tr>";
             }

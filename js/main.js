@@ -57,7 +57,6 @@
             cu_user_id: $(this).next().val()
 
         };
-        // console.log(cu_user_id);
 
         $.ajax({
             url: "addController.php",
@@ -75,6 +74,35 @@
 
         });
 
+    });
+    $('.assign').click(function(){
+            var assignChore;
+
+
+            var added = {
+                
+                assignChore: assignChore,
+                cu_user_id: $(this).next().val(),
+                assign_user: $(this).prev('.famName').val()
+
+            }
+            // console.log(cu_user_id);
+
+            $.ajax({
+                url: "assignController.php",
+                cache: false,
+                dataType: 'json',
+                type: 'POST',
+                data: added,
+                error: function(data){
+                    console.log(data + "This is an error");
+                },
+                success: function(data) {
+                    console.log(data + "Success is mine!");
+                    // location.reload();
+                }
+
+            });  
     });
 
 });

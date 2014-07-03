@@ -9,7 +9,9 @@ class Controller extends AppController {
 		parent::__construct();
 
         function getAllChores(){
-            $sql = "SELECT * FROM chore";
+            $sql = "SELECT * FROM chore
+                    WHERE family_id = 1
+                    ORDER BY FIELD(day_due, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')";
 
             $results = db::execute($sql);
 
