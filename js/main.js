@@ -3,6 +3,8 @@
  */
 ;$(function() {
 
+    //once chore is checked, add to table chore_user with date_completed
+
     $('.done').change(function(){ 
         var addChecked;
 
@@ -26,6 +28,7 @@
 
         };
 
+
         $.ajax({
             url: "doneController.php",
             cache: false,
@@ -36,11 +39,43 @@
                 console.log(data + "hello data");
             },
             success: function(data) {
-                console.log(data + "success!");
+                
+            }
+
+        });
+
+    });
+    // once click on add - add to users chore list and in database use AJAX to reload page
+
+    $('.add').click(function(){
+        var addChore;
+
+
+        var added = {
+            
+            addChore: addChore,
+            cu_user_id: $(this).next().val()
+
+        };
+        // console.log(cu_user_id);
+
+        $.ajax({
+            url: "addController.php",
+            cache: false,
+            dataType: 'json',
+            type: 'POST',
+            data: added,
+            error: function(data){
+                console.log(data + "This is an error");
+            },
+            success: function(data) {
+                // console.log(data + "Success is mine!");
+                location.reload();
             }
 
         });
 
     });
 
+    
 });

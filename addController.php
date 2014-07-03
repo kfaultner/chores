@@ -4,22 +4,22 @@
 include($_SERVER['DOCUMENT_ROOT'] . '/chores/app/core/initialize.php');
 
 // Controller
-class DoneController extends AjaxController {
+class AddController extends AjaxController {
     public function __construct() {
         parent::__construct();
 
         // Save User
         // $user = User::insert($_POST);
 
-        $checked = $_POST['addChecked'] == 'true' ? 'now()' : 'NULL'; 
+        // $added = $_POST['addChecked'] == 'true' ? 'now()' : 'NULL'; //this was from DoneController 
 
         //UPDATE STATEMENT TO DATABASE
         //set done as done or set done as null(unchecked)
         //whatever I pass in set value of done as NOW() 
-        $update = "UPDATE chore_user SET date_completed = $checked 
-                   WHERE id = {$_POST['chore_user_id']}";
+        $add = "UPDATE chore_user SET user_id = 3 
+               WHERE id = {$_POST['cu_user_id']}";//this was from DoneController
 
-        $results = db::execute($update);
+        $results = db::execute($add);//this was from DoneController
 
 
         // In the case of the Ajax Controller, the view is an array
@@ -31,4 +31,4 @@ class DoneController extends AjaxController {
     }
 
 }
-$dcontroller = new DoneController();
+$acontroller = new AddController();

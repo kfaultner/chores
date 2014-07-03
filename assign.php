@@ -12,9 +12,8 @@
 <body>
 
     <div class="page">
-        <h1 class="title">Dustin
+        <h1 class="title">Dustin <!-- (insert php echo for user_id name here) -->
             <img src="" alt="">
-            <div class="summary">Total points earned = 150<br>Total money earned = $15.00</div>
         </h1>
         <div class="assignChores">
             <h2>Chores</h2>

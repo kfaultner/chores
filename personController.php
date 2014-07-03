@@ -11,11 +11,12 @@ class PersonController extends AppController {
        //insert sql query here
         function getAllChoresForUser($user_id){
             
-            $sql = "SELECT c.name, c.day_due, c.point_value, c.monetary_value, 
+            $sql = "SELECT c.name, c.day_due, c.point_value, c.monetary_value, c.bonus, 
                     cu.id as cu_id, cu.date_completed 
                 FROM chore as c, chore_user as cu 
                 WHERE c.id = cu.chore_id 
-                AND cu.user_id = 3";
+                AND cu.user_id = 3
+                ORDER BY c.bonus ASC, c.name DESC";
 
             $results = db::execute($sql);
 
@@ -71,7 +72,7 @@ class PersonController extends AppController {
                         <td>{$chore_d['point_value']}</td>
                         <td>{$chore_d['monetary_value']}</td>
                         <td><input class='done' type='checkbox' $checked>
-                            <input type='hidden' name='chore_user_id' value='{$chore_d['cu_id']}'</td>
+                            <input type='hidden' name='chore_user_id' value='{$chore_d['cu_id']}'></td>
                         </tr>";
 
                 }
@@ -80,11 +81,15 @@ class PersonController extends AppController {
                 $allChores .= $html;
             }
 
+
         function getExtraChores(){
-            $sql = "SELECT * FROM chore as c, chore_user as cu 
+            $sql = "SELECT c.name, c.day_due, c.point_value, c.monetary_value, 
+                    cu.id as cu_id, cu.date_completed  
+                FROM chore as c, chore_user as cu 
                 WHERE c.bonus = 1 
                 AND c.id = cu.chore_id
-                AND cu.user_id is NULL";
+                AND cu.user_id is NULL 
+                ORDER BY FIELD(c.day_due, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')";
 
             $results = db::execute($sql);
 
@@ -93,12 +98,12 @@ class PersonController extends AppController {
             while($row = $results->fetch_assoc()){
 
                 array_push($extraChores,$row);
-            
 
             }
             
             return ($extraChores);
         }
+
             $extraChores = "";
             $html = "";
             $addExtra = getExtraChores();
@@ -110,7 +115,8 @@ class PersonController extends AppController {
                     <td>{$chore_e['day_due']}</td>
                     <td>{$chore_e['point_value']}</td>
                     <td>{$chore_e['monetary_value']}</td>
-                    <td><button class='add'>Add</td>
+                    <td><button class='add' type='button' $add>Add</button>
+                    <input type='hidden' name='cu_user_id' value='{$chore_e['cu_id']}'></td>
                     </tr>";
             }
 
@@ -129,10 +135,25 @@ class PersonController extends AppController {
         $this->view->allChores = $allChores;
         
         $this->view->totalEarned = "<div class='total'>TOTAL POSSIBLE
-                                    <table><thead><tr><th>Points |</th><th> Money</th></tr></thead>
-                                    <tbody></tbody></table>";
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Points |</th>
+                                                    <th> Money</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td> <?php echo $mark?></td>
+                                                    <td> <?php echo $mark1?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>";
 
         $this->view->extraChores = $extraChores;
+
+        $this->view->addTotal = $addTotal;
         //Antime we pass variables into ANY VIEW start with $this->view->createVariable
 
     }
@@ -159,7 +180,7 @@ extract($pcontroller->view->vars);
         <?php echo $allChores; 
 
             echo $totalEarned;?>
-
+        
     </div>
     <div class="extraChores">
         <table>

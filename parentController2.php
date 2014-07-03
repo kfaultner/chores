@@ -156,6 +156,10 @@ extract($pcontroller->view->vars);
             echo $totalEarned;?>
 
     </div>
+    <form action="assign.php" method="GET">
+        <button type="submit" class="manageChores">Manage Chores</button>
+        <input type="hidden" name="user_id" value="2">
+    </form>
     <div class="extraChores">
         <table>
             <thead>    
