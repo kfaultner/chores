@@ -1,19 +1,74 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+<?php
 
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="main.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    
-</head>
+// Init
+include($_SERVER['DOCUMENT_ROOT'] . '/chores/app/core/initialize.php');
+
+// Controller
+class Controller extends AppController {
+    public function __construct() {
+        parent::__construct();
+
+        function getAllChores(){
+            $sql = "SELECT * FROM chore
+                    ORDER BY FIELD(day_due, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')";
+
+            $results = db::execute($sql);
+
+            $allChores = [];
+
+            while($row = $results->fetch_assoc()){
+                array_push($allChores,$row);
+            }
+
+            return ($allChores);
+        }
+            
+        $allChores = "";
+        $html = "";
+        $famChores = getAllChores();
+
+        foreach($famChores as $chore_f){
+
+            $html .= "<tr>
+                    <td>{$chore_f['name']}</td>
+                    <td>{$chore_f['day_due']}</td>
+                    <td>{$chore_f['point_value']}</td>
+                    <td>{$chore_f['monetary_value']}</td>
+                    <td>
+                        <select name='family' id=''>
+                            <option value=''>Dustin</option>
+                            <option value=''>Kris</option>
+                            <option value=''>Emily</option>
+                            <option value=''>Abby</option>
+                        </select>
+                    </td>
+                    <td><button class='asign' type='button' $add>Add</button></td>
+                    </tr>";
+        }
+          
+            $allChores .= $html;
+
+
+        // Create welcome variable in view
+        $this->view->welcome = 'FAULTNER FAMILY CHORES';
+
+        $this->view->allChores = $allChores;
+
+        //Antime we pass variables into ANY VIEW start with $this->view->createVariable
+    }
+
+}
+$controller = new Controller();
+
+// Extract Main Controler Vars
+extract($controller->view->vars);
+
+?>
+
 <body>
 
     <div class="page">
-        <h1 class="title">Dustin <!-- (insert php echo for user_id name here) -->
-            <img src="" alt="">
+        <h1> <?php echo $welcome; ?>
         </h1>
         <div class="assignChores">
             <h2>Chores</h2>
@@ -22,81 +77,15 @@
                     <tr>
                         <th>Chore</th>
                         <th>Due by</th>
-                        <th>Value</th>
+                        <th>Points</th>
+                        <th>Money</th>
                         <th>Assign to</th>
                             
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Clean room</td>
-                        <td>Every day</td>
-                        <td>15 points</td>
-                        <td>
-                            <select name="family" id="">
-                                <option value="">Dustin</option>
-                                <option value="">Kris</option>
-                                <option value="">Emily</option>
-                                <option value="">Abby</option>
-                            </select>
-                        </td>
-                        <td> <button> Add </button></td>
-                    </tr>
-                    <tr>
-                        <td>Dishes</td>
-                        <td>Every day</td>
-                        <td>25 points</td>
-                        <td>
-                            <select name="family" id="">
-                                <option value="">Dustin</option>
-                                <option value="">Kris</option>
-                                <option value="">Emily</option>
-                                <option value="">Abby</option>
-                            </select>
-                        </td>
-                        <td><button> Add </button></td>
-                    </tr>
-                    <tr>
-                        <td>Mop floors</td>
-                        <td>Sat</td>
-                        <td>$2.00</td>
-                        <td>
-                            <select name="family" id="">
-                                <option value="">Dustin</option>
-                                <option value="">Kris</option>
-                                <option value="">Emily</option>
-                                <option value="">Abby</option>
-                            </select>
-                        </td>
-                        <td><button> Add </button></td>
-                    </tr>
-                    <tr>
-                        <td>Dust Living Room</td>
-                        <td>Thursday</td>
-                        <td>$1.50</td>
-                        <td>
-                            <select name="family" id="">
-                                <option value="">Dustin</option>
-                                <option value="">Kris</option>
-                                <option value="">Emily</option>
-                                <option value="">Abby</option>
-                            </select>
-                        </td>
-                        <td><button> Add </button></td>
-                    </tr>
-                    <tr>
-                        <td>Clean bathroom</td>
-                        <td>Sat</td>
-                        <td>$4.00</td>
-                        <td>
-                            <select name="family" id="">
-                                <option value="">Dustin</option>
-                                <option value="">Kris</option>
-                                <option value="">Emily</option>
-                                <option value="">Abby</option>
-                            </select>
-                        </td>
-                        <td><button> Add </button></td>
+                        <?php echo $allChores; ?>
                     </tr>
                 </tbody>
             </table>

@@ -7,7 +7,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/chores/app/core/initialize.php');
 class PersonController extends AppController {
     public function __construct() {
         parent::__construct();
-
+        $totalPts = 0;
+        $totalMny = 0;
        //insert sql query here
         function getAllChoresForUser($user_id){
             
@@ -31,6 +32,7 @@ class PersonController extends AppController {
 
             return ($chores);
         }
+                
        
         function getChoresForDay($chores,$day){
             $chores_for_day = [];
@@ -54,7 +56,7 @@ class PersonController extends AppController {
                 // print_r($chores_for_day); this worked, it printed out each day of chores
                 $html = "
                 <div class='day'>$day
-                    <table>
+                    <table id='getChores'>
                         <thead>    
                             <tr>
                                 <th>Chore</th>
@@ -64,8 +66,9 @@ class PersonController extends AppController {
                             </tr>
                         </thead><tbody>";
 
+
                 foreach($chores_for_day as $chore_d){
-                    // print_r($chore_d);
+
                     $checked = $chore_d['date_completed'] ? 'checked' : '';
                     $html .= "<tr>
                         <td>{$chore_d['name']}</td>
@@ -75,8 +78,11 @@ class PersonController extends AppController {
                             <input type='hidden' name='chore_user_id' value='{$chore_d['cu_id']}'></td>
                         </tr>";
 
+                    $totalPts = $totalPts + $chore_d['point_value'];
+                    $totalMny = $totalMny + $chore_d['monetary_value']  ;
                 }
                 
+                // $html .= "<tr><td></td></tr>";
                 $html .= "</tbody></table></div>";
                 $allChores .= $html;
             }
@@ -133,7 +139,7 @@ class PersonController extends AppController {
                 <div class="summary">Total points earned = 350<br>Total money earned = $25.00</div>';
         
         $this->view->allChores = $allChores;
-        
+        $totalMny = sprintf('%01.2f', $totalMny);
         $this->view->totalEarned = "<div class='total'>TOTAL POSSIBLE
                                         <table>
                                             <thead>
@@ -143,9 +149,9 @@ class PersonController extends AppController {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td> <?php echo $mark?></td>
-                                                    <td> <?php echo $mark1?></td>
+                                                <tr class='sum'>
+                                                    <td class='sum'>{$totalPts}</td>
+                                                    <td class='sum'>\${$totalMny}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -153,7 +159,7 @@ class PersonController extends AppController {
 
         $this->view->extraChores = $extraChores;
 
-        $this->view->addTotal = $addTotal;
+
         //Antime we pass variables into ANY VIEW start with $this->view->createVariable
 
     }
