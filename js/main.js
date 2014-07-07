@@ -5,6 +5,106 @@
 
     // $('.createChores').hide()
 
+    // creating chores on assign page
+
+    $('.newChoreAdd').click(function(){
+            var createChore;
+
+            
+            var created = {
+                
+                createChore: createChore,
+                chore: $('.chore').val(),
+                choreType: $(this).siblings('.choreType').val(),
+                dayDue: $('.dayDue').val(),
+                valueEarn: $('.valueEarn').val(),
+                bonus: $(this).prev().val()
+                // cu_user_id: $(this).next().val(),
+                // assign_user: $(this).prev('.famName').val()
+
+            }
+            // console.log(cu_user_id);
+
+            $.ajax({
+                url: "myController.php",
+                cache: false,
+                dataType: 'json',
+                type: 'POST',
+                data: created,
+                error: function(data){
+                    console.log(data + "This is an error");
+                },
+                success: function(data) {
+                    console.log(data + "Success for All!");
+                    location.reload();
+                }
+
+            });  
+    });
+
+    //assign chore to user on assign page
+
+    $('.assign').click(function(){
+            var assignChore;
+
+
+            var added = {
+                
+                assignChore: assignChore,
+                cu_user_id: $(this).next().val(),
+                assign_user: $(this).prev('.famName').val()
+
+            }
+            // console.log(cu_user_id);
+
+            $.ajax({
+                url: "assignController.php",
+                cache: false,
+                dataType: 'json',
+                type: 'POST',
+                data: added,
+                error: function(data){
+                    console.log(data + "This is an error");
+                },
+                success: function(data) {
+                    console.log(data + "Success is mine!");
+                    // location.reload();
+                }
+
+            });  
+    });
+
+
+    // once click on add - add to users chore list and in database use AJAX to reload page
+
+    $('.add').click(function(){
+        var addChore;
+
+
+        var added = {
+            
+            addChore: addChore,
+            cu_user_id: $(this).next().val()
+
+        };
+
+        $.ajax({
+            url: "addController.php",
+            cache: false,
+            dataType: 'json',
+            type: 'POST',
+            data: added,
+            error: function(data){
+                console.log(data + "This is an error");
+            },
+            success: function(data) {
+                // console.log(data + "Success is mine!");
+                location.reload();
+            }
+
+        });
+
+    });
     //once chore is checked, add to table chore_user with date_completed
 
     $('.done').change(function(){ 
@@ -47,101 +147,34 @@
         });
 
     });
-    // creating chores
 
-    $('.newChoreAdd').click(function(){
-            var createChore;
+    //delete chore from chore list on assign page
 
-            
-            var created = {
-                
-                createChore: createChore,
-                chore: $('.chore').val(),
-                choreType: $(this).siblings('.choreType').val(),
-                dayDue: $('.dayDue').val(),
-                valueEarn: $('.valueEarn').val(),
-                bonus: $(this).prev().val()
-                // cu_user_id: $(this).next().val(),
-                // assign_user: $(this).prev('.famName').val()
+    $('.removeChore').click(function(){ 
+        
+        var removeChore
 
-            }
-            // console.log(cu_user_id);
-
-            $.ajax({
-                url: "myController.php",
-                cache: false,
-                dataType: 'json',
-                type: 'POST',
-                data: created,
-                error: function(data){
-                    console.log(data + "This is an error");
-                },
-                success: function(data) {
-                    console.log(data + "Success for All!");
-                    location.reload();
-                }
-
-            });  
-    });
-    // once click on add - add to users chore list and in database use AJAX to reload page
-
-    $('.add').click(function(){
-        var addChore;
-
-
-        var added = {
-            
-            addChore: addChore,
-            cu_user_id: $(this).next().val()
-
-        };
+        var removed = {
+            removeChore: removeChore,
+            cu_user_id: $(this).prev().val(),
+            c_id: $(this).next().val()
+        }
 
         $.ajax({
-            url: "addController.php",
+            url: 'removeController.php',
             cache: false,
             dataType: 'json',
             type: 'POST',
-            data: added,
+            data: removed,
             error: function(data){
-                console.log(data + "This is an error");
+                console.log(data + "Nope, it is an error");
             },
             success: function(data) {
-                // console.log(data + "Success is mine!");
+                console.log(data + "Success YES!");
                 location.reload();
             }
 
-        });
+        }); 
 
     });
-    $('.assign').click(function(){
-            var assignChore;
-
-
-            var added = {
-                
-                assignChore: assignChore,
-                cu_user_id: $(this).next().val(),
-                assign_user: $(this).prev('.famName').val()
-
-            }
-            // console.log(cu_user_id);
-
-            $.ajax({
-                url: "assignController.php",
-                cache: false,
-                dataType: 'json',
-                type: 'POST',
-                data: added,
-                error: function(data){
-                    console.log(data + "This is an error");
-                },
-                success: function(data) {
-                    console.log(data + "Success is mine!");
-                    // location.reload();
-                }
-
-            });  
-    });
-
-
 });

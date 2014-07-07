@@ -9,7 +9,7 @@ class ManageController extends AppController {
         parent::__construct();
 
         function getManageChores(){
-            $sql = "SELECT c.name, c.day_due, c.point_value, c.monetary_value, cu.id as cu_id
+            $sql = "SELECT c.name, c.day_due, c.point_value, c.monetary_value, c.id as c_id, cu.id as cu_id
                     FROM chore as c, chore_user as cu
                     WHERE family_id = 1
                     AND c.id = cu.chore_id 
@@ -46,13 +46,24 @@ class ManageController extends AppController {
                         </select>
                         <button class='assign'$add>Add</button>
                         <input type='hidden' name='cu_user_id' value='{$chore_f['cu_id']}'>
-                        <button class='remove' $remove>Remove</button
+                        <button class='removeChore' $removeChore>Remove</button>
+                        <input type='hidden' name='cu_user_id' value='{$chore_f['c_id']}'>
+
                     </td>
                     </tr>";
         }
           
             $manageChores .= $html;
 
+        function getAssignedChores(){
+            $sql = "SELECT c.name, c.day_due, cu.id as cu_id, cu.user_id, u.first_name
+                    FROM chore as c, chore_user as cu
+                    WHERE family_id = 1
+                    AND c.id = cu.chore_id 
+                    AND cu.user_id = u.id
+                    ORDER BY FIELD(c.day_due, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')";
+
+        }
 
         // Create welcome variable in view
         $this->view->welcome = 'FAULTNER FAMILY CHORES';

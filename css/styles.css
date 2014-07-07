@@ -207,10 +207,10 @@ img {
 
 .assignChores {
     margin: 10px auto;
-    background-color: Khaki;
+    background-color: rgba(70, 130, 180, .5);
     text-align: center;
     width: 575px;
-    height: 400px;
+    height: 445px;
     float: left;
     margin-left: 10px;
     overflow: scroll;

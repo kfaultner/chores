@@ -11,13 +11,26 @@ class RemoveController extends AjaxController {
         // Save User
         // $user = User::insert($_POST);
 
-        //UPDATE STATEMENT TO DATABASE
-        //set done as done or set done as null(unchecked)
-        //whatever I pass in set value of done as NOW() 
-        $remove = "DELETE FROM chore_user 
-               WHERE id = {$_POST['cu_user_id']}";
+        //DELETE STATEMENT TO DATABASE
+        $removeChore = $_POST['cu_user_id'];
 
-        $results = db::execute($remove);
+        $removeThisChore = $_POST['c_id'];
+
+
+        $sql = "DELETE FROM chore WHERE id = $removeThisChore";
+
+        $results = db::execute($sql);
+
+
+        // $sql = "SELECT chore_id FROM chore_user WHERE id=$removeChore";
+
+        // $results = db::execute($sql);
+
+
+        $removeChoreRow = "DELETE FROM chore_user WHERE chore_id = $removeThisChore";
+
+
+        $results = db::execute($removeChoreRow);
 
 
         // In the case of the Ajax Controller, the view is an array
