@@ -3,7 +3,7 @@
 // Init
 include($_SERVER['DOCUMENT_ROOT'] . '/chores/app/core/initialize.php');
 
-// Controller
+// Controller adds the list of chores to the assign page.
 class ManageController extends AppController {
     public function __construct() {
         parent::__construct();
@@ -46,6 +46,7 @@ class ManageController extends AppController {
                         </select>
                         <button class='assign'$add>Add</button>
                         <input type='hidden' name='cu_user_id' value='{$chore_f['cu_id']}'>
+                        <button class='remove' $remove>Remove</button
                     </td>
                     </tr>";
         }
@@ -74,6 +75,20 @@ extract($mcontroller->view->vars);
     <div class="page">
         <h1> <?php echo $welcome; ?>
         </h1>
+        <div class="createChores">
+            <h2>Create New Chore</h2>
+            <div class="create">
+                Chore <input type="text" name="chore" class="chore" title="Enter name of chore">
+                <select name="choreType" class="choreType">
+                    <option value="1">Money</option>
+                    <option value="2">Points</option>
+                </select>
+                Day Due <input type="text" name="dayDue" class="dayDue" title="Enter the day the chore is due (Ex: Tuesday)">
+                Value <input type="text" name="valueEarn" class="valueEarn" title="Enter point value (Ex: 15) or monetary value (Ex: 1.50)"><br>
+                Is this an extra chore? <select class="bonus"><option Value="0">No</option><option Value="1">Yes</option></select>
+                <button class="newChoreAdd" <?php $pointChore ?>>Add</button>
+            </div>
+        </div>
         <div class="assignChores">
             <h2>Chores</h2>
              <table>
@@ -84,13 +99,27 @@ extract($mcontroller->view->vars);
                         <th>Points</th>
                         <th>Money</th>
                         <th>Assign to</th>
-                            
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <?php echo $manageChores; ?>
                     </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="created">
+            <h2>Assigned</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Chore</th>
+                        <th>Due by</th>
+                        <th>Name Assigned</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
                 </tbody>
             </table>
         </div>

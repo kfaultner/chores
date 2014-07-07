@@ -3,7 +3,7 @@
 // Init
 include($_SERVER['DOCUMENT_ROOT'] . '/chores/app/core/initialize.php');
 
-// Controller
+// Controller adds extra chores to user's daily chore list
 class AddController extends AjaxController {
     public function __construct() {
         parent::__construct();
@@ -11,15 +11,13 @@ class AddController extends AjaxController {
         // Save User
         // $user = User::insert($_POST);
 
-        // $added = $_POST['addChecked'] == 'true' ? 'now()' : 'NULL'; //this was from DoneController 
-
         //UPDATE STATEMENT TO DATABASE
         //set done as done or set done as null(unchecked)
         //whatever I pass in set value of done as NOW() 
         $add = "UPDATE chore_user SET user_id = 3 
-               WHERE id = {$_POST['cu_user_id']}";//this was from DoneController
+               WHERE id = {$_POST['cu_user_id']}";
 
-        $results = db::execute($add);//this was from DoneController
+        $results = db::execute($add);
 
 
         // In the case of the Ajax Controller, the view is an array

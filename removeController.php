@@ -3,21 +3,21 @@
 // Init
 include($_SERVER['DOCUMENT_ROOT'] . '/chores/app/core/initialize.php');
 
-// Controller assigns user to chore from parent's manage chores page
-class AssignController extends AjaxController {
+// Controller adds extra chores to user's daily chore list
+class RemoveController extends AjaxController {
     public function __construct() {
         parent::__construct();
 
         // Save User
         // $user = User::insert($_POST);
 
-        $assign_user = $_POST['assign_user'];
         //UPDATE STATEMENT TO DATABASE
-      
-        $add = "UPDATE chore_user SET user_id = $assign_user 
+        //set done as done or set done as null(unchecked)
+        //whatever I pass in set value of done as NOW() 
+        $remove = "DELETE FROM chore_user 
                WHERE id = {$_POST['cu_user_id']}";
 
-        $results = db::execute($add);
+        $results = db::execute($remove);
 
 
         // In the case of the Ajax Controller, the view is an array
@@ -29,4 +29,4 @@ class AssignController extends AjaxController {
     }
 
 }
-$assigncontroller = new AssignController();
+$rcontroller = new removeController();

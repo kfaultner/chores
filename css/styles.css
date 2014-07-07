@@ -6,11 +6,15 @@
     min-width: 60px;*/
 }
 
+h1 {
+    text-align: center;
+}
+
 .page {
     background-color: LightBlue;
     height: 600px;
     padding: 5px;
-    width: 800px;
+    width: 1000px;
     margin: 0 auto;
     position: relative;
 }
@@ -70,6 +74,7 @@ img {
     text-align: center;
     height: 400px;
     overflow: scroll;
+    border: solid blue 3px;
 }
 
 .chores li {
@@ -100,6 +105,7 @@ img {
     text-align: center;
     padding: 5px;
     overflow: scroll;
+    border: solid blue 4px;
 }
 
 .day {
@@ -176,17 +182,46 @@ img {
 
 /* Assign page */
 
+.createChores {
+    text-align: center;
+    border: solid black 1px;
+    margin: 5px;
+    background-color: rgba(10, 112, 215, .5);
+}
+.create {
+    /*border: solid black 2px;*/
+    margin: 2px;
+    text-align: center;
+    
+}
+.create input {
+    margin-right: 10px;
+    margin-top: 5px;
+    border-radius: 10px;
+}
+
+.create select {
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
 .assignChores {
     margin: 10px auto;
     background-color: Khaki;
     text-align: center;
-    width: 500px;
-    height: 500px;
+    width: 575px;
+    height: 400px;
+    float: left;
+    margin-left: 10px;
     overflow: scroll;
 }
 
 .assignChores table {
     margin: 10px auto;
+    padding: 5px;
+}
+
+.assignChores th, tr, td {
     padding: 5px;
 }
 
@@ -196,4 +231,20 @@ table {
 
 .details {
     float: right;
+}
+
+.created {
+    display: inline-block;
+    background-color: rgba(70, 130, 180, .5);
+    margin: 10px;
+    float: right;
+    width: 375px;
+    text-align: center;
+}
+
+.created table {
+    margin: auto;
+}
+.created th {
+    padding: 10px;
 }

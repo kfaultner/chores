@@ -3,7 +3,7 @@
 // Init
 include($_SERVER['DOCUMENT_ROOT'] . '/chores/app/core/initialize.php');
 
-// Controller
+// Controller that adds date completed once chore is checked. 
 class DoneController extends AjaxController {
     public function __construct() {
         parent::__construct();

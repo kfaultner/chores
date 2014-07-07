@@ -97,6 +97,11 @@ class db extends mysqli {
 	*    INSERTING                          *
 	*****************************************/
 
+	public static function last_insert_id() {
+		$mysqli = self::get_mysqli();
+		return $mysqli->insert_id;
+	}
+
 	/**
 	 * Execute Standard INSERT statement
 	 */
@@ -142,6 +147,7 @@ class db extends mysqli {
 	private static function make_insert_statement($table_name, $sql_values) {
 		return "INSERT INTO `{$table_name}` (`" . implode('`, `', array_keys($sql_values)) . "`) VALUES (" . implode(', ', $sql_values) . ")";
 	}
+
 
 
 	/****************************************
