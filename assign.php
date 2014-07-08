@@ -56,19 +56,53 @@ class ManageController extends AppController {
             $manageChores .= $html;
 
         function getAssignedChores(){
-            $sql = "SELECT c.name, c.day_due, cu.id as cu_id, cu.user_id, u.first_name
-                    FROM chore as c, chore_user as cu
-                    WHERE family_id = 1
+            $sql = "SELECT c.name, c.day_due, cu.id as cu_id, u.first_name as u_first_name, cu.user_id as cu_user_id, u.id
+                    FROM chore as c, chore_user as cu, user as u
+                    WHERE c.family_id = 1
                     AND c.id = cu.chore_id 
                     AND cu.user_id = u.id
-                    ORDER BY FIELD(c.day_due, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')";
+                    ORDER BY u.first_name, FIELD(c.day_due, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')";
+
+            $results = db::execute($sql);
+
+            $assignedChores = [];
+
+            while($row = $results->fetch_assoc()){
+                array_push($assignedChores,$row);
+            }
+
+            return ($assignedChores);
 
         }
+
+        $assignedChores = "";
+
+        $html = "";
+        $familyChores = getAssignedChores();
+
+        foreach($familyChores as $chore){
+
+            $html .= "<tr>
+                <td>{$chore['name']}</td>
+                <td>{$chore['day_due']}</td>
+                <td>{$chore['u_first_name']}</td>
+                <td>
+                    <input type='hidden' name='cu_id' value='{$chore_f['cu_id']}'>
+                    <button class='removeAssignedChore' $removeAssignedChore>Remove</button>
+                    <input type='hidden' name='c_id' value='{$chore_f['c_id']}'>
+
+                </td>
+                </tr>";
+        }
+          
+            $assignedChores .= $html;
 
         // Create welcome variable in view
         $this->view->welcome = 'FAULTNER FAMILY CHORES';
 
         $this->view->manageChores = $manageChores;
+
+        $this->view->assignedChores = $assignedChores;
 
         //Antime we pass variables into ANY VIEW start with $this->view->createVariable
     }
@@ -130,7 +164,7 @@ extract($mcontroller->view->vars);
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    <?php echo $assignedChores; ?>
                 </tbody>
             </table>
         </div>

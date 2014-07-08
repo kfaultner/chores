@@ -10,8 +10,15 @@ h1 {
     text-align: center;
 }
 
+a {
+    text-decoration: none;
+    color: white;
+}
+
 .page {
-    background-color: LightBlue;
+    background: url("imageBkgrd/clean2.jpg") no-repeat top left;
+    background-size: 100% 100%;
+    background-color: rgba(75, 121, 220, .1);
     height: 600px;
     padding: 5px;
     width: 1000px;
@@ -20,7 +27,7 @@ h1 {
 }
 
 .title {
-    background-color: cyan;
+    background-color: rgba(80, 129, 236, .8);
     text-align: center;
     margin: 15px;
     padding: 10px 0px;
@@ -39,8 +46,9 @@ h1 {
 
 }
 #parent1, #parent2 {
-    background-color: yellow;
-    border: DeepSkyBlue solid 1px;
+    background-color: rgba(0, 0, 128, .6);
+    color: white;
+    border: navy solid 1px;
     text-align: center;
     height: 75px;
     margin: 10px;
@@ -48,8 +56,9 @@ h1 {
 }
 
 #child1, #child2 {
-    background-color: red;
-    border: lime solid 1px;
+    background-color: rgba(0, 0, 128, .6);
+    color: white;
+    border: navy solid 1px;
     text-align: center;
     height: 75px;
     margin: 10px;
@@ -65,7 +74,8 @@ img {
 }
 
 .chores {
-    background-color: green;
+    background-color: rgba(0, 0, 128, .6);
+    color: white;
     padding: 10px;
     display: inline-block;
     position: absolute;
@@ -98,7 +108,7 @@ img {
 }
 
 .personViewChores {
-    background-color: green;
+    background-color: rgba(0, 0, 128, .6);
     width: 430px;
     height: 500px;
     margin-left: 20px;
@@ -121,7 +131,7 @@ img {
 }
 
 .extraChores {
-    background-color: Tomato;
+    background-color: rgba(0, 0, 128, .6);
     display: inline;
     float: right;
     padding: 5px;
@@ -137,7 +147,7 @@ img {
 
 .total {
     font-weight: bold;
-    background-color: MediumSpringGreen;
+    background-color: LightSteelBlue;
     width: 300px;
     height: 50px;
     margin: 10px auto;
@@ -169,7 +179,7 @@ img {
 /* Parent page */
 
 .manageChores {
-    background-color: MediumSpringGreen;
+    background-color: LightSteelBlue;
     position: absolute;
     top: 100px;
     right: 75px;
@@ -239,6 +249,8 @@ table {
     margin: 10px;
     float: right;
     width: 375px;
+    height: 445px;
+    overflow: scroll;
     text-align: center;
 }
 
