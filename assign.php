@@ -122,6 +122,7 @@ extract($mcontroller->view->vars);
         </h1>
         <div class="createChores">
             <h2>Create New Chore</h2>
+            <a href="index.php" class="home2">Home</a>
             <div class="create">
                 Chore <input type="text" name="chore" class="chore" title="Enter name of chore">
                 <select name="choreType" class="choreType">

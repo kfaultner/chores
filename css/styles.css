@@ -2,23 +2,57 @@
 
     margin: 0;
     padding: 0;
+    font-family: Vidaloka-Regular;
 /*    min-height: 40px;
     min-width: 60px;*/
 }
 
+@font-face {
+    font-family: Vidaloka-Regular;
+    src: url(fonts/Vidaloka-Regular.ttf);
+}
+
 h1 {
+    font-family: Vidaloka-Regular;
     text-align: center;
 }
 
 a {
+    font-family: Vidaloka-Regular;
     text-decoration: none;
-    color: white;
+    color: black;
+    
+}
+
+.home {
+    font-size: 18px;
+    float: left;
+    position: absolute;
+    top: 48px;
+    left: 150px;
+    background: rgba(255, 255, 255, .4);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.home2 {
+    font-size: 18px;
+    float: left;
+    position: absolute;
+    top: 108px;
+    left: 100px;
+    background: rgba(255, 255, 255, .4);
+    padding: 5px;
+    border-radius: 5px;
+}
+.personInfo {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .page {
     background: url("imageBkgrd/clean2.jpg") no-repeat top left;
     background-size: 100% 100%;
-    background-color: rgba(75, 121, 220, .1);
     height: 600px;
     padding: 5px;
     width: 1000px;
@@ -28,7 +62,10 @@ a {
 
 .title {
     background-color: rgba(80, 129, 236, .8);
+    font-family: Vidaloka-Regular;
     text-align: center;
+    border-radius: 10px;
+    border: solid navy 1px;
     margin: 15px;
     padding: 10px 0px;
 }
@@ -38,6 +75,13 @@ a {
     width: 75px;
     margin-top: 10px;
 }
+
+.indImg {
+    height: 45px;
+    width: 60px;
+    /*margin-top: 10px;*/
+}
+
 .myFamily {
     padding: 5px;
     display: inline-block;
@@ -46,8 +90,10 @@ a {
 
 }
 #parent1, #parent2 {
-    background-color: rgba(0, 0, 128, .6);
-    color: white;
+    background-color: rgba(80, 129, 236, .8);
+    /*color: white;*/
+    font-family: Vidaloka-Regular;
+    border-radius: 10px;
     border: navy solid 1px;
     text-align: center;
     height: 75px;
@@ -56,8 +102,9 @@ a {
 }
 
 #child1, #child2 {
-    background-color: rgba(0, 0, 128, .6);
-    color: white;
+    background-color: rgba(80, 129, 236, .8);
+    /*color: white;*/
+    border-radius: 10px;
     border: navy solid 1px;
     text-align: center;
     height: 75px;
@@ -74,8 +121,10 @@ img {
 }
 
 .chores {
-    background-color: rgba(0, 0, 128, .6);
-    color: white;
+    background-color: rgba(80, 129, 236, .8);
+    /*color: navy;*/
+
+    border-radius: 10px;
     padding: 10px;
     display: inline-block;
     position: absolute;
@@ -84,7 +133,7 @@ img {
     text-align: center;
     height: 400px;
     overflow: scroll;
-    border: solid blue 3px;
+    border: solid navy 1px;
 }
 
 .chores li {
@@ -93,6 +142,18 @@ img {
 }
 
 /*personView.php*/
+
+.refresh {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+    height: 30px;
+    width: 200px;
+    border-radius: 10px;
+    font-size: 14pt;
+    background-color: rgba(80, 129, 236, .8);
+    border: solid navy 1px;
+}
 
 .choreList li {
     background-color: LightSteelBlue;
@@ -107,19 +168,26 @@ img {
     margin-right: 10px;
 }
 
+.summary2 {
+    float: right;
+    font-size: 16pt;
+    margin-right: 10px;
+}
+
 .personViewChores {
-    background-color: rgba(0, 0, 128, .6);
+    background-color: rgba(80, 129, 236, .8);
     width: 430px;
     height: 500px;
     margin-left: 20px;
     text-align: center;
     padding: 5px;
     overflow: scroll;
-    border: solid blue 4px;
+    border: solid navy 1px;
+    border-radius: 10px;
 }
 
 .day {
-    background-color: #ccc;
+    background-color: rgba(204, 204, 204, .6);
     width: 400px;
     margin: 10px;
     padding: 5px;
@@ -131,7 +199,10 @@ img {
 }
 
 .extraChores {
-    background-color: rgba(0, 0, 128, .6);
+    background-color: rgba(80, 129, 236, .5);
+    /*color: white;*/
+    border-radius: 10px;
+    border: solid navy 1px;
     display: inline;
     float: right;
     padding: 5px;
@@ -147,7 +218,7 @@ img {
 
 .total {
     font-weight: bold;
-    background-color: LightSteelBlue;
+    background-color: rgba(80, 129, 236, .8);
     width: 300px;
     height: 50px;
     margin: 10px auto;
@@ -157,35 +228,17 @@ img {
     float: right;
 }
 
-/*.assign {
-    background-color: pink;
-    margin-top: 10px;
-    position: absolute;
-    top: 85px;
-    right: 100px;
-}*/
-
-/*
-.assign button{
-    background-color: pink;
-    border-radius: 5px;
-    height: 30px;
-    width: 100px;
-    float: right;
-    right: 500px;
-    top: 10px;
-}*/
-
 /* Parent page */
 
 .manageChores {
-    background-color: LightSteelBlue;
+    background-color: rgba(80, 129, 236, .8);
     position: absolute;
+    border: navy solid 1px;
     top: 100px;
     right: 75px;
     height: 30px;
     width: 200px;
-    font-size: 14px;
+    font-size: 14pt;
     border-radius: 10px;
 
 }
@@ -194,14 +247,17 @@ img {
 
 .createChores {
     text-align: center;
-    border: solid black 1px;
+    border: solid navy 1px;
+    border-radius: 10px;
     margin: 5px;
-    background-color: rgba(10, 112, 215, .5);
+    background-color: rgba(80, 129, 236, .7);
 }
+
 .create {
     /*border: solid black 2px;*/
     margin: 2px;
     text-align: center;
+    border-radius: 10px;
     
 }
 .create input {
@@ -217,7 +273,9 @@ img {
 
 .assignChores {
     margin: 10px auto;
-    background-color: rgba(70, 130, 180, .5);
+    background-color: rgba(80, 129, 236, .7);
+    border-radius: 10px;
+    border: solid navy 1px;
     text-align: center;
     width: 575px;
     height: 445px;
@@ -241,11 +299,16 @@ table {
 
 .details {
     float: right;
+    height: 25px;
+    width: 75px;
+    font-size: 10pt;
 }
 
 .created {
     display: inline-block;
-    background-color: rgba(70, 130, 180, .5);
+    background-color: rgba(80, 129, 236, .7);
+    border: solid navy 1px;
+    border-radius: 10px;
     margin: 10px;
     float: right;
     width: 375px;

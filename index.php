@@ -60,7 +60,7 @@ extract($controller->view->vars);
   <aside class="myFamily">
             <div id="parent1" >
                 <img class="homeImg" src="images/dustin.jpg" alt="">
-                  <div class="personInfo"> Dustin<br>
+                  <div class="personInfo"> DUSTIN <br>
                     <form action="parentController1.php" method="GET">
                         <button type="submit" class="details">View Details</button>
                         <input type="hidden" name="user_id" value="1">
@@ -71,7 +71,7 @@ extract($controller->view->vars);
             </div>
             <div id="parent2" class="person">
                 <img class="homeImg" src="images/kris.jpg" alt="">
-                <div class="personInfo"> KRIS<br>
+                <div class="personInfo"> KRIS <br>
                     <form action="parentController2.php" method="GET">
                         <button type="submit" class="details">View Details</button>
                         <input type="hidden" name="user_id" value="2">
@@ -82,7 +82,7 @@ extract($controller->view->vars);
             </div>
             <div id="child1" class="person child">
                 <img class="homeImg" src="images/Emily.jpg" alt="">
-                <div class="personInfo"> EMILY<br>
+                <div class="personInfo"> EMILY <br>
                     <form action="personController.php" method="GET">
                         <button type="submit" class="details">View Details</button>
                         <input type="hidden" name="user_id" value="3">
@@ -93,7 +93,7 @@ extract($controller->view->vars);
             </div>
             <div id="child2" class="person">
                 <img class="homeImg" src="images/Abby2.jpg" alt="">
-                <div class="personInfo"> Abby<br>
+                <div class="personInfo"> ABIGAIL <br>
                     <form action="personController4.php" method="GET">
                         <button type="submit" class="details">View Details</button>
                         <input type="hidden" name="user_id" value="4">

@@ -8,6 +8,8 @@ class PersonController extends AppController {
     public function __construct() {
         parent::__construct();
 
+        $totalPts = 0;
+        $totalMny = 0;
        //insert sql query here
         function getAllChoresForUser($user_id){
             
@@ -70,6 +72,9 @@ class PersonController extends AppController {
                         <td><input class='done' type='checkbox'></td>
                         </tr>";
 
+                    $totalPts = $totalPts + $chore_d['point_value'];
+                    $totalMny = $totalMny + $chore_d['monetary_value'];
+
                 }
                 
                 $html .= "</tbody></table></div>";
@@ -118,14 +123,28 @@ class PersonController extends AppController {
         // $results = db::execute($sql);
         
         // Create welcome variable in view
-        $this->view->welcome = '<img src="" alt="">
-                <div class="summary">Total points earned = 200<br>Total money earned = $10.00</div>';
+        $this->view->welcome = '<img class="indImg" src="images/Abby2.jpg" alt="">
+                <div class="summary">Total points earned = 200<br>Total money earned = $10.00</div>
+                <div class="summary2">Total points earned = 0<br>Total money earned = $0.00</div>';
         
         $this->view->allChores = $allChores;
         
         $this->view->totalEarned = "<div class='total'>TOTAL POSSIBLE
-                                    <table><thead><tr><th>Points |</th><th> Money</th></tr></thead>
-                                    <tbody></tbody></table>";
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Points |</th>
+                                                    <th> Money</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class='sum'>
+                                                    <td class='sum'>{$totalPts}</td>
+                                                    <td class='sum'>\${$totalMny}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>";
 
         $this->view->extraChores = $extraChores;
         //Antime we pass variables into ANY VIEW start with $this->view->createVariable
@@ -147,6 +166,7 @@ extract($pcontroller->view->vars);
         <h1>Abby
             <?php echo $welcome; ?>
         </h1>
+        <a href="index.php" class="home">Home</a>
     </header>
 
     <div class='personViewChores'>
@@ -156,6 +176,7 @@ extract($pcontroller->view->vars);
             echo $totalEarned;?>
 
     </div>
+    <button class="refresh">Pay Out</button>
     <div class="extraChores">
         <table>
             <thead>    

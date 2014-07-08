@@ -79,7 +79,7 @@ class PersonController extends AppController {
                         </tr>";
 
                     $totalPts = $totalPts + $chore_d['point_value'];
-                    $totalMny = $totalMny + $chore_d['monetary_value']  ;
+                    $totalMny = $totalMny + $chore_d['monetary_value'];
                 }
                 
                 // $html .= "<tr><td></td></tr>";
@@ -135,8 +135,9 @@ class PersonController extends AppController {
         // $results = db::execute($sql);
         
         // Create welcome variable in view
-        $this->view->welcome = '<img src="" alt="">
-                <div class="summary">Total points earned = 350<br>Total money earned = $25.00</div>';
+        $this->view->welcome = '<img class="indImg" src="images/Emily.jpg" alt="">
+                <div class="summary">Total points earned = 350<br>Total money earned = $25.00</div>
+                <div class="summary2">Total points earned = 0<br>Total money earned = $0.00</div>';
         
         $this->view->allChores = $allChores;
         $totalMny = sprintf('%01.2f', $totalMny);
@@ -179,6 +180,7 @@ extract($pcontroller->view->vars);
         <h1>Emily
             <?php echo $welcome; ?>
         </h1>
+        <a href="index.php" class="home">Home</a>
     </header>
 
     <div class='personViewChores'>
@@ -188,6 +190,7 @@ extract($pcontroller->view->vars);
             echo $totalEarned;?>
         
     </div>
+    <button class="refresh">Pay Out</button>
     <div class="extraChores">
         <table>
             <thead>    

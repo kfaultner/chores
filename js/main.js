@@ -3,7 +3,12 @@
  */
 ;$(function() {
 
-    // $('.createChores').hide()
+    $('.summary2').hide()
+
+    $('.refresh').click(function(){
+        $('.summary').hide();
+        $('.summary2').show();
+    });
 
     // creating chores on assign page
 
