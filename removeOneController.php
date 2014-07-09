@@ -13,11 +13,8 @@ class RemoveController extends AjaxController {
 
         $removeThisChore = $_POST['c_id'];
 
-        $sql = "DELETE FROM chore WHERE id = $removeThisChore";
-
-        $results = db::execute($sql);
-
-        $removeChoreRow = "DELETE FROM chore_user WHERE chore_id = $removeThisChore";
+        $removeChoreRow = "UPDATE chore_user SET user_id = NULL
+                            WHERE chore_id = $removeThisChore";
 
         $results = db::execute($removeChoreRow);
 

@@ -124,7 +124,8 @@ class ParentController extends AppController {
         
         // Create welcome variable in view
         $this->view->welcome = '<img class="indImg" src="images/Kris.jpg" alt="">
-                <div class="summary">Total points earned = 250<br>Total money earned = $1.00</div>';
+                <div class="summary">Total points earned = 250<br>Total money earned = $1.00</div>
+                <div class="summary2">Total points earned = 0<br>Total money earned = $0.00</div>';
         
         $this->view->allChores = $allChores;
         
@@ -175,6 +176,7 @@ extract($pcontroller->view->vars);
             echo $totalEarned;?>
 
     </div>
+    <button class="refresh">Pay Out</button>
     <form action="assign.php" method="GET">
         <button type="submit" class="manageChores">Manage Chores</button>
         <input type="hidden" name="user_id" value="2">

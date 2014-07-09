@@ -36,11 +36,11 @@ a {
 }
 
 .home2 {
-    font-size: 18px;
+    font-size: 13pt;
     float: left;
     position: absolute;
-    top: 108px;
-    left: 100px;
+    top: 109px;
+    left: 80px;
     background: rgba(255, 255, 255, .4);
     padding: 5px;
     border-radius: 5px;
@@ -146,12 +146,12 @@ img {
 .refresh {
     position: absolute;
     top: 100px;
-    right: 100px;
+    right: 75px;
     height: 30px;
     width: 200px;
     border-radius: 10px;
     font-size: 14pt;
-    background-color: rgba(80, 129, 236, .8);
+    background-color: rgba(43, 218, 249, .5);
     border: solid navy 1px;
 }
 
@@ -231,11 +231,11 @@ img {
 /* Parent page */
 
 .manageChores {
-    background-color: rgba(80, 129, 236, .8);
+    background-color: rgba(43, 218, 249, .5);
     position: absolute;
     border: navy solid 1px;
     top: 100px;
-    right: 75px;
+    right: 300px;
     height: 30px;
     width: 200px;
     font-size: 14pt;
@@ -258,17 +258,35 @@ img {
     margin: 2px;
     text-align: center;
     border-radius: 10px;
+    font-size: 13pt;
     
 }
 .create input {
     margin-right: 10px;
     margin-top: 5px;
     border-radius: 10px;
+    height: 15px;
+    font-size: 10pt;
 }
 
 .create select {
     margin-right: 10px;
     margin-top: 10px;
+}
+
+.assign { /*button*/
+    height: 20px;
+    width: 25px;
+
+}
+
+.removeChore {
+    height: 20px;
+}
+
+.removeAssignedChore {
+    height: 20px;
+    width: 60px;
 }
 
 .assignChores {
@@ -299,7 +317,7 @@ table {
 
 .details {
     float: right;
-    height: 25px;
+    height: 33px;
     width: 75px;
     font-size: 10pt;
 }
@@ -322,4 +340,10 @@ table {
 }
 .created th {
     padding: 10px;
+}
+
+.newChoreAdd {
+    height: 20px;
+    width: 40px;
+    font-size: 10pt;
 }

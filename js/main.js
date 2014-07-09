@@ -73,7 +73,7 @@
                 },
                 success: function(data) {
                     console.log(data + "Success is mine!");
-                    // location.reload();
+                    location.reload();
                 }
 
             });  
@@ -177,6 +177,36 @@
             success: function(data) {
                 console.log(data + "Success YES!");
                 location.reload();
+            }
+
+        }); 
+
+    });
+
+    $('.removeAssignedChore').click(function(){ 
+        
+        $(this).parent().parent().remove();
+        
+        var removeChore
+
+        var removed = {
+            removeChore: removeChore,
+            cu_user_id: $(this).prev().val(),
+            c_id: $(this).next().val()
+        }
+
+        $.ajax({
+            url: 'removeOneController.php',
+            cache: false,
+            dataType: 'json',
+            type: 'POST',
+            data: removed,
+            error: function(data){
+                console.log(data + "Nope, it is an error");
+            },
+            success: function(data) {
+                console.log(data + "Success YES!");
+              
             }
 
         }); 
