@@ -210,6 +210,8 @@ img {
     top: 150px;
     right: 15px;
     text-align: center;
+    overflow: scroll;
+    height: 400px;
 }
 
 .extraChores li {
