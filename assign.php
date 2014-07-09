@@ -148,7 +148,7 @@ extract($mcontroller->view->vars);
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr class="createdChores">
                         <?php echo $manageChores; ?>
                     </tr>
                 </tbody>

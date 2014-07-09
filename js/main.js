@@ -13,85 +13,82 @@
     // creating chores on assign page
 
     $('.newChoreAdd').click(function(){
-            var createChore;
 
-            
-            var created = {
-                
-                createChore: createChore,
-                chore: $('.chore').val(),
-                choreType: $(this).siblings('.choreType').val(),
-                dayDue: $('.dayDue').val(),
-                valueEarn: $('.valueEarn').val(),
-                bonus: $(this).prev().val()
-                // cu_user_id: $(this).next().val(),
-                // assign_user: $(this).prev('.famName').val()
+        var created = {
 
+            chore: $('.chore').val(),
+            choreType: $(this).siblings('.choreType').val(),
+            dayDue: $('.dayDue').val(),
+            valueEarn: $('.valueEarn').val(),
+            bonus: $(this).prev().val()
+
+        }
+
+        $.ajax({
+            url: "myController.php",
+            cache: false,
+            dataType: 'json',
+            type: 'POST',
+            data: created,
+            error: function(data){
+                console.log(data + "This is an error");
+            },
+            success: function(data) {
+                location.reload();
             }
-            // console.log(cu_user_id);
 
-            $.ajax({
-                url: "myController.php",
-                cache: false,
-                dataType: 'json',
-                type: 'POST',
-                data: created,
-                error: function(data){
-                    console.log(data + "This is an error");
-                },
-                success: function(data) {
-                    console.log(data + "Success for All!");
-                    location.reload();
-                }
-
-            });  
+        });  
     });
 
     //assign chore to user on assign page
 
     $('.assign').click(function(){
-            var assignChore;
+        var assignChore;
 
 
-            var added = {
-                
-                assignChore: assignChore,
-                cu_user_id: $(this).next().val(),
-                assign_user: $(this).prev('.famName').val()
+        var added = {
+            
+            assignChore: assignChore,
+            cu_user_id: $(this).next().val(),
+            assign_user: $(this).prev('.famName').val()
 
+        }
+
+        $.ajax({
+            url: "assignController.php",
+            cache: false,
+            dataType: 'json',
+            type: 'POST',
+            data: added,
+            error: function(data){
+                console.log(data + "This is an error");
+            },
+            success: function(data) {
+                location.reload();
             }
-            // console.log(cu_user_id);
 
-            $.ajax({
-                url: "assignController.php",
-                cache: false,
-                dataType: 'json',
-                type: 'POST',
-                data: added,
-                error: function(data){
-                    console.log(data + "This is an error");
-                },
-                success: function(data) {
-                    console.log(data + "Success is mine!");
-                    location.reload();
-                }
-
-            });  
+        });  
     });
 
 
     // once click on add - add to users chore list and in database use AJAX to reload page
 
     $('.add').click(function(){
-        var addChore;
 
 
+        var abby = $(this).parent().parent().parent().attr('class')
+            if(abby == 'abbyExtra'){
+                setUser_id = 4
+            }else {
+                setUser_id = 3
+            }
+          
         var added = {
             
-            addChore: addChore,
+            abby: setUser_id,
             cu_user_id: $(this).next().val()
 
-        };
+        }
 
         $.ajax({
             url: "addController.php",
@@ -103,7 +100,6 @@
                 console.log(data + "This is an error");
             },
             success: function(data) {
-                // console.log(data + "Success is mine!");
                 location.reload();
             }
 
@@ -157,6 +153,8 @@
 
     $('.removeChore').click(function(){ 
         
+        $(this).parent().parent().remove();
+
         var removeChore
 
         var removed = {
@@ -176,7 +174,6 @@
             },
             success: function(data) {
                 console.log(data + "Success YES!");
-                location.reload();
             }
 
         }); 
@@ -205,7 +202,6 @@
                 console.log(data + "Nope, it is an error");
             },
             success: function(data) {
-                console.log(data + "Success YES!");
               
             }
 

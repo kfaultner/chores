@@ -228,6 +228,11 @@ img {
     float: right;
 }
 
+.add {
+    height: 20px;
+    width: 40px;
+}
+
 /* Parent page */
 
 .manageChores {
@@ -267,6 +272,7 @@ img {
     border-radius: 10px;
     height: 15px;
     font-size: 10pt;
+    text-align: center;
 }
 
 .create select {

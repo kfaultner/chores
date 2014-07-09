@@ -14,7 +14,8 @@ class AddController extends AjaxController {
         //UPDATE STATEMENT TO DATABASE
         //set done as done or set done as null(unchecked)
         //whatever I pass in set value of done as NOW() 
-        $add = "UPDATE chore_user SET user_id = 3 
+
+        $add = "UPDATE chore_user SET user_id = {$_POST['abby']} 
                WHERE id = {$_POST['cu_user_id']}";
 
         $results = db::execute($add);

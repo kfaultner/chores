@@ -7,6 +7,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/chores/app/core/initialize.php');
 class PersonController extends AppController {
     public function __construct() {
         parent::__construct();
+
         $totalPts = 0;
         $totalMny = 0;
        //insert sql query here
@@ -82,7 +83,6 @@ class PersonController extends AppController {
                     $totalMny = $totalMny + $chore_d['monetary_value'];
                 }
                 
-                // $html .= "<tr><td></td></tr>";
                 $html .= "</tbody></table></div>";
                 $allChores .= $html;
             }

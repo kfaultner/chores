@@ -13,9 +13,12 @@ class PersonController extends AppController {
        //insert sql query here
         function getAllChoresForUser($user_id){
             
-            $sql = "SELECT * FROM chore as c, chore_user as cu 
+            $sql = "SELECT c.name, c.day_due, c.point_value, c.monetary_value, c.bonus, 
+                    cu.id as cu_id, cu.date_completed 
+                FROM chore as c, chore_user as cu 
                 WHERE c.id = cu.chore_id 
-                AND cu.user_id = 4";
+                AND cu.user_id = 4
+                ORDER BY c.bonus ASC, c.name DESC";
 
             $results = db::execute($sql);
 
@@ -53,7 +56,7 @@ class PersonController extends AppController {
                 // print_r($chores_for_day); this worked, it printed out each day of chores
                 $html = "
                 <div class='day'>$day
-                    <table>
+                    <table id='getChores2'>
                         <thead>    
                             <tr>
                                 <th>Chore</th>
@@ -65,11 +68,13 @@ class PersonController extends AppController {
 
                 foreach($chores_for_day as $chore_d){
      
+                    $checked = $chore_d['date_completed'] ? 'checked' : '';
                     $html .= "<tr>
                         <td>{$chore_d['name']}</td>
                         <td>{$chore_d['point_value']}</td>
                         <td>{$chore_d['monetary_value']}</td>
-                        <td><input class='done' type='checkbox'></td>
+                        <td><input class='done' type='checkbox' $checked>
+                            <input type='hidden' name='chore_user_id' value='{$chore_d['cu_id']}'></td>
                         </tr>";
 
                     $totalPts = $totalPts + $chore_d['point_value'];
@@ -82,10 +87,13 @@ class PersonController extends AppController {
             }
 
         function getExtraChores(){
-            $sql = "SELECT * FROM chore as c, chore_user as cu 
+            $sql = "SELECT c.name, c.day_due, c.point_value, c.monetary_value, 
+                    cu.id as cu_id, cu.date_completed  
+                FROM chore as c, chore_user as cu 
                 WHERE c.bonus = 1 
                 AND c.id = cu.chore_id
-                AND cu.user_id is NULL";
+                AND cu.user_id is NULL 
+                ORDER BY FIELD(c.day_due, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')";
 
             $results = db::execute($sql);
 
@@ -110,7 +118,8 @@ class PersonController extends AppController {
                     <td>{$chore_e['day_due']}</td>
                     <td>{$chore_e['point_value']}</td>
                     <td>{$chore_e['monetary_value']}</td>
-                    <td><button class='add'>Add</td>
+                    <td><button class='add' $add>Add</button>
+                    <input type='hidden' name='cu_user_id' value='{$chore_e['cu_id']}'></td>
                     </tr>";
             }
 
@@ -188,7 +197,7 @@ extract($pcontroller->view->vars);
                     <th>Add</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="abbyExtra">
                 <?php echo $extraChores; ?>
             </tbody>
     </div>
