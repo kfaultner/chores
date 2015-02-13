@@ -9,6 +9,7 @@
         $('.summary').hide();
         $('.summary2').show();
     });
+    console.log ('testing');
 
     // creating chores on assign page
 
