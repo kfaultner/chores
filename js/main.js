@@ -10,6 +10,7 @@
         $('.summary2').show();
     });
     console.log ('testing');
+    console.log ('testing again, trying branching');
 
     // creating chores on assign page
 
